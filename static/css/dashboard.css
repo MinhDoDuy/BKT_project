@@ -1,0 +1,779 @@
+/* =========================================
+   THIẾT LẬP CƠ BẢN VÀ BIẾN (VARIABLES)
+   ========================================= */
+
+:root {
+  /* Màu sắc cơ bản */
+  --primary-pink: #ff9a9e;
+  --light-pink: #ffeef2;
+  --sidebar-pink: #ffb7b2;
+  --text-dark: #333;
+  --text-light: #666;
+  --white: #ffffff;
+  --blue-btn: #4a90e2;
+  --red-btn: #e74c3c;
+  --font-main: 'Nunito', sans-serif;
+
+  /* Thiết lập Sidebar */
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 80px; /* Chiều rộng khi thu gọn */
+  --bg-sidebar: #e0f2fe; /* Màu xanh nhạt nền sidebar */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--light-pink);
+  color: var(--text-dark);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Layout */
+.app-container {
+  display: flex;
+  height: 100%;
+}
+
+/* =========================================
+   I. SIDEBAR (THANH BÊN)
+   ========================================= */
+
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--bg-sidebar);
+    background-image: url('https://www.transparenttextures.com/patterns/school.png');
+    background-blend-mode: overlay;
+    border-right: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 100;
+    padding-bottom: 20px;
+    overflow-x: hidden;
+}
+
+/* --- LOGO & ROLE --- */
+.logo-area {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.logo-circle {
+    width: 50px;
+    height: 50px;
+    background: #27ae60;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5px;
+}
+.logo-circle img { width: 100%; height: auto; }
+
+.role-badge {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    margin-left: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+/* --- TOGGLE BUTTON (TRẠNG THÁI MỞ MẶC ĐỊNH) --- */
+.toggle-btn {
+    position: absolute;
+    top: 90px;
+    /* VỊ TRÍ MỚI: Đặt nút sát cạnh phải của Sidebar khi nó đang mở */
+    right: 0px;
+    transform: translateX(50%); /* Dịch chuyển ra ngoài 50% chiều rộng của nó */
+
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 101;
+    color: #555;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Đồng bộ với Sidebar */
+}
+.toggle-btn:hover { background: #f9f9f9; color: #000; }
+
+/* --- USER PROFILE --- */
+.user-profile {
+    text-align: center;
+    margin-top: 10px;
+}
+.avatar-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 50%;
+    padding: 3px;
+    background: #fff;
+}
+.avatar {
+    width: 100%; height: 100%; border-radius: 70%; object-fit: cover;
+}
+.edit-icon {
+    position: absolute;
+    bottom: 0; right: 0;
+    background: #3b82f6; color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+.user-email {
+    margin-top: 10px;
+    background: #00bcd4;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 13px;
+    max-width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- DECORATION --- */
+.festive-decoration {
+    text-align: center;
+    padding: 15px 0;
+}
+.decoration-line {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    font-size: 16px;
+    color: #e74c3c;
+}
+.fa-dragon {
+    font-size: 24px !important;
+    color: #f1c40f !important;
+}
+
+
+/* --- NAVIGATION MENU --- */
+.nav-menu {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: none;
+    padding-top: 10px;
+}
+.nav-menu::-webkit-scrollbar { display: none; }
+
+/* Overview Button (Nút nổi bật) */
+.overview-container {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+.overview-btn {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 15px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    overflow: hidden;
+}
+.overview-btn.active, .overview-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.overview-icon {
+    width: 40px;
+    height: 40px;
+    background: #ff6b6b;
+    color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+.overview-btn .nav-text {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+/* Menu List Items (Mục thường) */
+.menu-list { padding: 0 20px; }
+.menu-item { margin-bottom: 5px; }
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-radius: 12px;
+    color: #555;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 600;
+    font-size: 15px;
+}
+.menu-link:hover {
+    background: rgba(255,255,255, 0.6);
+    color: var(--blue-btn);
+}
+
+.icon-box {
+    width: 24px;
+    text-align: center;
+    margin-right: 15px;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+/* Màu sắc icon tùy chỉnh cho các mục */
+.fa-chalkboard-teacher { color: #e67e22; }
+.fa-chart-line { color: #27ae60; }
+.fa-sliders-h, .fa-cog { color: #8e44ad; }
+.fa-book { color: #2980b9; }
+.fa-users { color: #c0392b; }
+
+.menu-link .arrow {
+    margin-left: auto;
+    font-size: 12px;
+    transition: transform 0.3s;
+}
+
+/* Dropdown Content */
+/* --- DROP DOWN CONTENT --- */
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    padding-left: 50px;
+    /* Giữ nền mờ cho phần tử cha */
+    border-radius: 0 0 12px 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* 1. KIỂU DÁNG MẶC ĐỊNH (TRONG SUỐT HOÀN TOÀN) */
+.submenu a {
+    display: block;
+    /* Dùng padding nhỏ để chữ không bị sát lề quá */
+    padding: 8px 12px;
+
+    /* Đảm bảo HOÀN TOÀN trong suốt khi chưa hover */
+    margin: 0; /* Xóa margin */
+    background: transparent; /* TRONG SUỐT */
+    border-radius: 0; /* KHÔNG BO GÓC */
+
+    color: #666; /* Màu chữ mặc định */
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+/* 2. HIỆU ỨNG KHI DI CHUỘT (HÌNH CHỮ NHẬT LỚN) */
+.submenu a:hover
+{
+    /* BẮT ĐẦU TẠO KHỐI NỔI BẬT */
+    color: var(--text-dark); /* Màu chữ đậm hơn */
+    font-weight: 600; /* ĐÃ SỬA: Thay 700 thành 600 */
+    background: var(--white); /* Nền trắng hoàn toàn */
+
+    /* Vị trí tương đối: kéo mục con sang trái 50px để che khoảng padding-left: 50px của submenu */
+    position: relative; /* ĐÃ SỬA: Giữ giá trị relative hợp lệ */
+
+
+
+    /* CĂN CHỈNH CHỮ Ở GIỮA */
+    text-align: center; /* ĐÃ THÊM: Căn chữ ra giữa */
+    padding: 8px 10px; /* ĐÃ SỬA: Giảm padding để chữ có thể căn giữa dễ hơn */
+
+    /* Đảm bảo không bo góc ở ngoài để tạo hình chữ nhật sắc nét */
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+}
+
+.menu-item.active .submenu {
+    max-height: 200px;
+}
+.menu-item.active .arrow {
+    transform: rotate(180deg);
+}
+
+/* --- MASCOT AREA (BAO GỒM CHIM CÁNH CỤT VÀ ICON THÔNG BÁO) --- */
+.mascot-area {
+    padding: 10px 10px 0;
+    text-align: center;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    flex-shrink: 0;
+    height: 160px;
+}
+
+.penguin-img {
+    width: 85px;
+    height: auto;
+    transition: width 0.3s;
+    margin-left: -100px;
+}
+
+/* Icon Thông báo mới */
+.notification-icon {
+    position: absolute;
+    right: 100px;
+    top: 10px;
+    transition: all 0.3s;
+}
+.notification-img {
+    width: 50px;
+    height: auto;
+}
+
+
+/* =========================================
+   II. COLLAPSED STATE (TRẠNG THÁI THU GỌN)
+   ========================================= */
+
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+
+}
+
+/* Ẩn chữ và các thành phần thừa */
+.sidebar.collapsed .role-badge,
+.sidebar.collapsed .user-email,
+.sidebar.collapsed .festive-decoration,
+.sidebar.collapsed .nav-text,
+.sidebar.collapsed .arrow,
+.sidebar.collapsed .submenu {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
+}
+
+/* Logo nhỏ lại */
+.sidebar.collapsed .logo-circle {
+    width: 40px; height: 40px;
+}
+
+/* Avatar nhỏ lại */
+.sidebar.collapsed .avatar-wrapper {
+    width: 70px; height: 70px;
+}
+.sidebar.collapsed .edit-icon { display: none; }
+
+/* --- TOGGLE BUTTON (TRẠNG THÁI THU GỌN - .collapsed) --- */
+.sidebar.collapsed .toggle-btn {
+    /* Đẩy nút ra ngoài khỏi cạnh phải của Sidebar thu gọn (80px). */
+    /* Vị trí này sẽ đặt nút ngay cạnh bên ngoài Sidebar. */
+    right: 0px;
+    transform: translateX(100%); /* Chỉ dịch chuyển ra ngoài 100% chiều rộng của nút (30px) */
+}
+
+/* Biểu tượng mũi tên xoay */
+.sidebar.collapsed .toggle-btn i {
+    transform: rotate(180deg);
+}
+
+/* Căn chỉnh lại menu items vào giữa */
+.sidebar.collapsed .overview-container,
+.sidebar.collapsed .menu-list {
+    padding: 0 10px;
+}
+
+/* Nút Overview biến thành nút vuông nhỏ */
+.sidebar.collapsed .overview-btn {
+    padding: 10px;
+    justify-content: center;
+}
+.sidebar.collapsed .overview-icon {
+    margin-right: 0;
+    width: 32px; height: 32px; font-size: 16px;
+}
+
+/* Các menu link khác */
+.sidebar.collapsed .menu-link {
+    justify-content: center;
+    padding: 15px 0;
+}
+.sidebar.collapsed .icon-box {
+    margin-right: 0;
+    font-size: 20px;
+}
+
+/* SỬA ĐỔI QUAN TRỌNG: Đảm bảo Mascot luôn hiển thị */
+.sidebar.collapsed .mascot-area {
+    display: flex; /* Đảm bảo nó không bị ẩn */
+    justify-content: center;
+    align-items: flex-end;
+    padding: 30px 0 0;
+    height: 120px;
+}
+
+.sidebar.collapsed .penguin-img {
+    width: 65px; /* Chim cánh cụt nhỏ lại khi thu gọn */
+}
+
+/* Icon Thông báo bị đẩy ra/ẩn đi khi thu gọn */
+.sidebar.collapsed .notification-icon {
+    right: -50px; /* Đẩy ra ngoài tầm nhìn */
+    opacity: 0;
+}
+
+
+/* =========================================
+   III. MAIN CONTENT & HEADER
+   ========================================= */
+
+.main-content {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  overflow-y:auto;
+  background:var(--light-pink);
+}
+
+/* Header UI */
+.top-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  padding:15px 30px;
+}
+
+.banner-container {
+  flex:1;
+  display:flex;
+  justify-content:center;
+  padding-right:20px;
+}
+
+.banner-text {
+  background:white;
+  color:#e84393;
+  font-weight:800;
+  font-size:1.5rem;
+  padding:10px 60px;
+  border-radius:30px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  box-shadow:0 4px 10px rgba(232,67,147,0.2);
+}
+
+.header-controls {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:10px;
+}
+
+.control-group {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.btn-primary,
+.btn-theme,
+.btn-logout {
+  padding:8px 15px;
+  border-radius:8px;
+  font-weight:700;
+  font-family:var(--font-main);
+  cursor:pointer;
+  border: none;
+}
+
+.btn-primary { background:var(--blue-btn);color:white; }
+.btn-theme   { background:white;border:1px solid #ddd;color:var(--text-dark);gap:5px;display:flex;align-items:center; }
+.btn-logout  { background:var(--red-btn);color:white;display:flex;align-items:center;gap:5px;}
+
+.lang-toggle {
+  background:white;
+  border:1px solid #ddd;
+  border-radius:20px;
+  font-weight:700;font-size:.9rem;
+  display:flex;gap:8px;align-items:center;
+  padding:5px 10px;
+}
+
+.flag { width:20px;border-radius:4px; }
+
+.toggle-switch {
+  width:30px;height:16px;
+  background:#4a90e2;border-radius:10px;
+  position:relative;
+}
+
+.toggle-switch::after {
+  content:'';
+  width:12px;height:12px;
+  background:white;border-radius:50%;
+  position:absolute;right:2px;top:2px;
+}
+
+.bkt-default {
+  background:white;
+  padding:5px 15px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:.9rem;
+  display:flex;align-items:center;gap:5px;
+}
+
+.badge {
+  background:#27ae60;
+  color:white;
+  padding:2px 6px;
+  border-radius:4px;
+  font-size:.7rem;
+  text-transform:uppercase;
+}
+
+/* Dashboard Content */
+
+.dashboard-content { padding:0 30px 30px; }
+
+.course-card {
+  background:white;
+  border-radius:20px;
+  margin-bottom:30px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.05);
+  overflow:hidden;
+}
+
+.card-header {
+  display:flex;justify-content:space-between;align-items:center;
+  padding:15px 25px;border-bottom:1px solid #eee;
+}
+
+.class-title { display:flex;align-items:center;gap:10px; }
+.class-icon {
+  width:40px;height:40px;
+  background:#dff9fb;color:#22a6b3;
+  border-radius:10px;font-size:1.2rem;
+  display:flex;align-items:center;justify-content:center;
+}
+
+.class-title h3 { font-size:1.1rem;font-weight:800; }
+
+.class-stats { display:flex;gap:30px; }
+.stat-item   { text-align:center;display:flex;flex-direction:column; }
+.stat-val    { font-weight:800;font-size:1.1rem; }
+.stat-label  { font-size:.7rem;color:#999;text-transform:uppercase; }
+
+.card-body {
+  display:flex;gap:20px;padding:20px;
+}
+
+/* Columns */
+
+.lesson-column {
+  flex:1;
+  background:white;
+  border-radius:15px;
+}
+
+.lesson-column.right {
+  border-left:1px solid #f0f0f0;
+  padding-left:20px;
+}
+
+.column-header {
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:20px;
+}
+
+.icon-box {
+  width:36px;height:36px;
+  border-radius:8px;
+  color:white;display:flex;
+  align-items:center;justify-content:center;
+}
+
+.left .icon-box { background:#f1c40f; }
+.right .icon-box { background:#3498db; }
+
+.column-header h4 { font-size:.95rem;font-weight:700; }
+.column-header p  { font-size:.75rem;color:#999; }
+
+/* Empty State */
+
+.empty-state {
+  height:250px;
+  border:2px dashed #eee;
+  border-radius:15px;
+  text-align:center;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+
+.empty-icon-circle {
+  width:60px;height:60px;
+  background:#f5f6fa;color:#bdc3c7;
+  font-size:1.5rem;margin-bottom:10px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;
+}
+
+.empty-state h5 { font-size:1rem;color:#7f8c8d;margin-bottom:5px; }
+.empty-state p  { font-size:.8rem;color:#bdc3c7; }
+
+/* Lesson Preview */
+
+.lesson-preview-card {
+  border:1px solid #eee;
+  border-radius:15px;
+  padding:15px;
+  max-width:320px;
+}
+
+.preview-header { font-weight:700;font-size:.9rem;margin-bottom:10px; }
+
+.preview-image {
+  width:100%;height:160px;
+  background:#f0f0f0;
+  margin-bottom:10px;border-radius:10px;
+  overflow:hidden;position:relative;
+}
+
+.preview-image img { width:100%;height:100%;object-fit:cover; }
+
+.speech-bubbles {
+  position:absolute;top:10px;left:10px;right:10px;bottom:10px;
+  pointer-events:none;
+}
+
+.bubble {
+  position:absolute;background:white;
+  padding:2px 8px;border-radius:10px;
+  font-size:.7rem;font-weight:800;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.b1 { top:10%;left:10%;color:#3498db; }
+.b2 { top:20%;left:40%;color:#e74c3c;font-size:.9rem; }
+.b3 { top:15%;right:10%;color:#f1c40f; }
+
+.preview-info { margin-bottom:15px; }
+
+.info-row {
+  font-size:.7rem;color:#999;
+  display:flex;justify-content:space-between;
+  margin-bottom:5px;
+}
+
+.lesson-title {
+  font-weight:800;
+  font-size:.9rem;
+  line-height:1.3;
+}
+
+.preview-actions {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.btn-check {
+  background:#e74c3c;color:white;
+  border:none;border-radius:5px;
+  padding:6px 20px;font-size:.8rem;font-weight:700;
+}
+
+.likes {
+  font-size:.8rem;font-weight:700;
+  color:#e74c3c;
+}
+
+.show-all {
+  color:#bdc3c7;
+  text-align:right;
+  font-size:.7rem;
+  margin-top:10px;
+}
+
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    padding: 6px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+}
+
+.toggle-switch {
+    width: 40px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 20px;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.toggle-switch::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s ease;
+}
+
+/* Khi bật */
+.lang-toggle.active .toggle-switch {
+    background: #4caf50;
+}
+
+.lang-toggle.active .toggle-switch::after {
+    transform: translateX(20px);
+}
