@@ -16,7 +16,17 @@ def login_page():
     return render_template('login.html')
 
 
-# Xử lý form login
+# # Xử lý form login
+# @app.route('/login', methods=['POST'])
+# def login():
+#     email = request.form.get('email')
+#     password = request.form.get('password')
+#     if email == USER_EMAIL and password == USER_PASSWORD:
+#         session['logged_in'] = True
+#         session['user_email'] = email
+#         return redirect(url_for('dashboard'))
+#     else:
+#         return render_template('login.html', error="Email hoặc mật khẩu không đúng", email=email)
 @app.route('/login', methods=['POST'])
 def login():
     email = request.form.get('email')
@@ -26,8 +36,9 @@ def login():
         session['user_email'] = email
         return redirect(url_for('dashboard'))
     else:
-        return render_template('login.html', error="Email hoặc mật khẩu không đúng", email=email)
-
+        # truyền error về template
+        error_msg = "Email hoặc mật khẩu không đúng"
+        return render_template('login.html', error=error_msg, email=email)
 
 # Dashboard
 @app.route('/dashboard')
