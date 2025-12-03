@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="dashboard_title">SmartKids Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!--    <link rel="stylesheet" href="/static/css/dashboard.css">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+<div class="app-container">
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-area">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <img src="https://smk.bkt.net.vn/_next/image?url=%2Fbkt_logo.png&w=384&q=75" alt="Logo BKT">
+                </div>
+                <span class="role-badge" data-i18n="role_teacher">Teacher</span>
+            </div>
+        </div>
+
+        <div class="toggle-btn" id="sidebarToggle">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+
+        <div class="user-profile">
+            <div class="avatar-wrapper">
+                <img src="https://smk.bkt.net.vn/_next/image?url=https%3A%2F%2Fstatic.edupia.vn%2Fimages%2Favata_system%2F55.png&w=256&q=75"
+                     alt="User Avatar" class="avatar">
+                <div class="edit-icon"><i class="fas fa-pencil-alt"></i></div>
+            </div>
+            <div class="user-email">doduyinh178@gmail.com</div>
+        </div>
+
+        <div class="festive-decoration">
+            <div class="decoration-line">
+                <i class="fas fa-holly-berry" style="color: #e74c3c;"></i>
+                <i class="fas fa-dragon" style="color: #f1c40f; font-size: 24px;"></i>
+                <i class="fas fa-holly-berry" style="color: #e74c3c;"></i>
+            </div>
+        </div>
+
+        <nav class="nav-menu">
+
+            <div class="overview-container">
+                <a href="#" class="overview-btn active">
+                    <div class="overview-icon">
+                        <i class="fas fa-th-large"></i>
+                    </div>
+                    <span class="nav-text" data-i18n="overview">Overview</span>
+                </a>
+            </div>
+
+            <div class="menu-list">
+                <div class="menu-item has-dropdown">
+                    <div class="menu-link" onclick="toggleDropdown(this)">
+                        <div class="icon-box"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <span class="nav-text" data-i18n="class">Class</span>
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="submenu">
+                        <a href="#" data-i18n="class_3_4">Class 3-4 years</a>
+                        <a href="#" data-i18n="class_4_5">Class 4-5 years</a>
+                        <a href="#" data-i18n="class_5_6">Class 5-6 years</a>
+                    </div>
+                </div>
+
+                <div class="menu-item has-dropdown">
+                    <div class="menu-link" onclick="toggleDropdown(this)">
+                        <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                        <span class="nav-text" data-i18n="teaching_progress">Teaching progress</span>
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="submenu">
+                        <a href="#" data-i18n="lesson_completed">Lesson completed</a>
+                        <a href="#" data-i18n="lessons_being_taught">Lessons being taught</a>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div class="icon-box"><i class="fas fa-sliders-h"></i></div>
+                        <span class="nav-text" data-i18n="set_mode">Set teaching mode</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div class="icon-box"><i class="fas fa-book"></i></div>
+                        <span class="nav-text" data-i18n="material">Reference material</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div class="icon-box"><i class="fas fa-users"></i></div>
+                        <span class="nav-text" data-i18n="expert_team">Expert team</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div class="icon-box"><i class="fas fa-cog"></i></div>
+                        <span class="nav-text" data-i18n="settings">Settings</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="mascot-area">
+            <div class="notification-icon">
+                <img src="https://smk.bkt.net.vn/_next/image?url=%2Fassets%2Fimage%2Fnotification.webp&w=640&q=85"
+                     alt="Notification" class="notification-img">
+            </div>
+
+            <img src="https://smk.bkt.net.vn/_next/image?url=%2Fassets%2Fimage%2Fbkt_mascot.webp&w=640&q=85"
+                 alt="Mascot" class="penguin-img">
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="banner-container">
+                <div class="banner-text" data-i18n="smartkids_2025">SmartKids 2025</div>
+            </div>
+            <div class="header-controls">
+                <div class="control-group">
+                    <button class="btn-primary" data-i18n="homepage" id="homepageBtn">
+                        <i class="fas fa-home"></i> Homepage
+                    </button>
+                    <div class="lang-toggle">
+                        <img src="https://flagcdn.com/w40/gb.png" alt="UK Flag" class="flag">
+                        <span>English</span>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    <button class="btn-theme" data-i18n="theme"><i class="fas fa-palette"></i> Theme</button>
+                </div>
+                <div class="control-group bottom-row">
+                    <div class="bkt-default">
+                        <span class="badge">bkt</span> <span data-i18n="default_label">Default</span>
+                    </div>
+                    <button class="btn-logout" data-i18n="logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+
+            <div class="course-card">
+                <div class="card-header">
+                    <div class="class-title">
+                        <div class="class-icon"><i class="fas fa-users"></i></div>
+                        <h3 data-i18n="class_5_6s">Class 5–6 years</h3>
+                    </div>
+                    <div class="class-stats">
+                        <div class="stat-item">
+                            <span class="stat-val">0</span>
+                            <span class="stat-label" data-i18n="completed">Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-val">70</span>
+                            <span class="stat-label" data-i18n="total_lessons">Total lessons</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-val">0%</span>
+                            <span class="stat-label" data-i18n="progress">Progress</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="lesson-column left">
+                        <div class="column-header">
+                            <div class="icon-box"><i class="fas fa-chalkboard"></i></div>
+                            <div>
+                                <h4 data-i18n="lesson_being_taught">Lesson being taught</h4>
+                                <p data-i18n="current_lecture">Current lecture</p>
+                            </div>
+                        </div>
+                        <div class="empty-state">
+                            <div class="empty-icon-circle">
+                                <i class="fas fa-child"></i>
+                            </div>
+                            <h5 data-i18n="no_lessons">No lessons yet</h5>
+                            <p data-i18n="start_new">Start a new lesson</p>
+                        </div>
+                    </div>
+                    <div class="lesson-column right">
+                        <div class="column-header">
+                            <div class="icon-box"><i class="fas fa-rocket"></i></div>
+                            <div>
+                                <h4 data-i18n="next_lesson">Next lesson</h4>
+                                <p data-i18n="upcoming_lecture">Upcoming lecture</p>
+                            </div>
+                        </div>
+                        <div class="lesson-preview-card">
+                            <div class="preview-header" data-i18n="unit_1_new_friends">Unit 1: New Friends</div>
+                            <div class="preview-image">
+                                <img src="/static/images/thumb_friends.png" alt="New Friends">
+                                <div class="speech-bubbles">
+                                    <span class="bubble b1">Hi!</span>
+                                    <span class="bubble b2">HELLO!</span>
+                                    <span class="bubble b3">Hi!</span>
+                                </div>
+                            </div>
+                            <div class="preview-info">
+                                <div class="info-row">
+                                    <span data-i18n="week_1">Week 1</span>
+                                    <!--                                    <span data-i18n="class_5_6s">Class 5-6 years</span>-->
+                                </div>
+                                <div class="lesson-title" data-i18n="lesson_title_01">LESSON 1 - LET'S
+                                    LISTEN
+                                </div>
+                            </div>
+                            <div class="preview-actions">
+                                <button class="btn-check" data-i18n="check_now">Check now</button>
+                                <div class="likes"><i class="fas fa-heart"></i> 2.8k</div>
+                            </div>
+                        </div>
+                        <div class="show-all" data-i18n="all_lessons_shown">All lessons shown</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--            <div class="course-card">-->
+            <!--                <div class="card-header">-->
+            <!--                    <div class="class-title">-->
+            <!--                        <div class="class-icon"><i class="fas fa-users"></i></div>-->
+            <!--                        <h3 data-i18n="class_3_4">Class 3-4 years</h3>-->
+            <!--                    </div>-->
+            <!--                    <div class="class-stats">-->
+            <!--                        <div class="stat-item">-->
+            <!--                            <span class="stat-val">0</span>-->
+            <!--                            <span class="stat-label" data-i18n="completed">Completed</span>-->
+            <!--                        </div>-->
+            <!--                        <div class="stat-item">-->
+            <!--                            <span class="stat-val">70</span>-->
+            <!--                            <span class="stat-label" data-i18n="total_lessons">Total lessons</span>-->
+            <!--                        </div>-->
+            <!--                        <div class="stat-item">-->
+            <!--                            <span class="stat-val">0%</span>-->
+            <!--                            <span class="stat-label" data-i18n="progress">Progress</span>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="card-body">-->
+            <!--                    <div class="lesson-column left">-->
+            <!--                        <div class="column-header">-->
+            <!--                            <div class="icon-box"><i class="fas fa-chalkboard"></i></div>-->
+            <!--                            <div>-->
+            <!--                                <h4 data-i18n="lessons_being_taught">Lessons being taught</h4>-->
+            <!--                                <p data-i18n="current_lecture">Current lecture</p>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                        <div class="empty-state">-->
+            <!--                            <div class="empty-icon-circle">-->
+            <!--                                <i class="fas fa-book-reader"></i>-->
+            <!--                            </div>-->
+            <!--                            <h5 data-i18n="no_lessons">No lessons yet</h5>-->
+            <!--                            <p data-i18n="start_new">Start a new lesson</p>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                    <div class="lesson-column right">-->
+            <!--                        <div class="column-header">-->
+            <!--                            <div class="icon-box"><i class="fas fa-rocket"></i></div>-->
+            <!--                            <div>-->
+            <!--                                <h4 data-i18n="next_lesson">Next lesson</h4>-->
+            <!--                                <p data-i18n="upcoming_lecture">Upcoming lecture</p>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                        <div class="lesson-preview-card">-->
+            <!--                            <div class="preview-header" data-i18n="unit_1_hello">Unit 1: Hello</div>-->
+            <!--                            <div class="preview-image">-->
+            <!--                                <img src="/static/images/thumb_hello.png" alt="Hello">-->
+            <!--                            </div>-->
+            <!--                            <div class="preview-info">-->
+            <!--                                <div class="info-row">-->
+            <!--                                    <span data-i18n="week_1">Week 1</span>-->
+            <!--                                    <span data-i18n="class_3_4">Class 3-4 years</span>-->
+            <!--                                </div>-->
+            <!--                                <div class="lesson-title" data-i18n="lesson_title_01">TIẾT 01 : LESSON 1 - LET'S-->
+            <!--                                    LISTEN-->
+            <!--                                </div>-->
+            <!--                            </div>-->
+            <!--                            <div class="preview-actions">-->
+            <!--                                <button class="btn-check" data-i18n="check_now">Check now</button>-->
+            <!--                                <div class="likes"><i class="fas fa-heart"></i> 565</div>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+
+        </div>
+    </main>
+</div>
+
+<script src="{{ url_for('static', filename='lang/lang_en.js') }}"></script>
+<script src="{{ url_for('static', filename='lang/lang_vi.js') }}"></script>
+
+<!-- Load JS chính sau khi có LANG_EN / LANG_VI -->
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+<!--<script src="/assets/lang/lang_en.js"></script>-->
+<!--<script src="/assets/lang/lang_vi.js"></script>-->
+<!--<script src="/assets/js/dashboard.js"></script>-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // 1. Lấy các phần tử
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+
+        // 2. Xử lý Sidebar Toggle
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+
+            if (sidebar.classList.contains('collapsed')) {
+                const openMenus = document.querySelectorAll('.menu-item.active');
+                openMenus.forEach(item => item.classList.remove('active'));
+            }
+        });
+
+        // 3. Dropdown Menu
+        window.toggleDropdown = function(element) {
+            if (sidebar.classList.contains('collapsed')) {
+                sidebar.classList.remove('collapsed');
+                setTimeout(() => {
+                    element.parentElement.classList.toggle('active');
+                }, 100);
+            } else {
+                element.parentElement.classList.toggle('active');
+            }
+        };
+
+        /* =============================== */
+        /* 4. Language Toggle + Load File   */
+        /* =============================== */
+
+        const langToggle = document.querySelector('.lang-toggle');
+        const langText = langToggle.querySelector('span');
+        const langFlag = langToggle.querySelector('img');
+
+        // Biến lưu ngôn ngữ hiện tại
+        let currentLang = "en";
+
+        // Hàm load file ngôn ngữ (Sử dụng innerHTML để bảo toàn icon/HTML con)
+        function applyLanguage(langData) {
+    const htmlKeys = ['homepage', 'theme', 'logout'];
+
+    for (const key in langData) {
+        const elements = document.querySelectorAll(`[data-i18n="${key}"]`);
+
+        elements.forEach(el => {
+            if (htmlKeys.includes(key)) {
+                el.innerHTML = langData[key];
+            } else {
+                el.textContent = langData[key];
+            }
+        });
+    }
+}
+
+        langToggle.addEventListener('click', () => {
+            langToggle.classList.toggle('active');
+
+            if (currentLang === "en") {
+                // → Chuyển sang tiếng Việt
+                currentLang = "vi";
+                langText.textContent = "Tiếng Việt";
+                langFlag.src = "https://flagcdn.com/w40/vn.png";
+
+                applyLanguage(LANG_VI);
+
+            } else {
+                // → Chuyển về English
+                currentLang = "en";
+                langText.textContent = "English";
+                langFlag.src = "https://flagcdn.com/w40/gb.png";
+
+                applyLanguage(LANG_EN);
+            }
+        });
+
+        // Khởi tạo ngôn ngữ khi tải trang (Đảm bảo Tiếng Anh được tải ban đầu)
+        applyLanguage(LANG_EN);
+    });
+</script>
+</body>
+</html>
