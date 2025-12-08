@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="dashboard_title">SmartKids Dashboard</title>
+    <title>{% block title %}SmartKids{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
-
+    {% block head_extra %}{% endblock %}
 </head>
 
 <body>
@@ -21,7 +21,7 @@
                 <div class="logo-circle">
                     <img src="https://smk.bkt.net.vn/_next/image?url=%2Fbkt_logo.png&w=384&q=75" alt="Logo BKT">
                 </div>
-                <span class="role-badge" data-i18n="role_teacher">Teacher</span>
+                <span class="role-badge" data-i18n="role_teacher">Giáo viên</span>
             </div>
         </div>
 
@@ -47,69 +47,59 @@
         </div>
 
         <nav class="nav-menu">
-
-            <div class="overview-container">
-                <a href="#" class="overview-btn active">
-                    <div class="overview-icon">
-                        <i class="fas fa-th-large"></i>
-                    </div>
-                    <span class="nav-text" data-i18n="overview">Overview</span>
-                </a>
-            </div>
-
             <div class="menu-list">
+                <div class="menu-item {% block overview_active %}{% endblock %}">
+                    <a href="#" class="menu-link">
+                        <div class="icon-box"><i class="fas fa-th-large"></i></div>
+                        <span class="nav-text" data-i18n="overview">Tổng quan</span>
+                    </a>
+                </div>
+
                 <div class="menu-item has-dropdown">
                     <div class="menu-link" onclick="toggleDropdown(this)">
                         <div class="icon-box"><i class="fas fa-chalkboard-teacher"></i></div>
-                        <span class="nav-text" data-i18n="class">Class</span>
+                        <span class="nav-text" data-i18n="class">Lớp học</span>
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <div class="submenu">
-                        <a href="#" data-i18n="class_3_4">Class 3-4 years</a>
-                        <a href="#" data-i18n="class_4_5">Class 4-5 years</a>
-                        <a href="#" data-i18n="class_5_6">Class 5-6 years</a>
+                        <a href="#" data-i18n="class_3_4">Lớp 3-4 tuổi</a>
+                        <a href="#" data-i18n="class_4_5">Lớp 4-5 tuổi</a>
+                        <a href="#" data-i18n="class_5_6">Lớp 5-6 tuổi</a>
                     </div>
                 </div>
 
                 <div class="menu-item has-dropdown">
                     <div class="menu-link" onclick="toggleDropdown(this)">
                         <div class="icon-box"><i class="fas fa-chart-line"></i></div>
-                        <span class="nav-text" data-i18n="teaching_progress">Teaching progress</span>
+                        <span class="nav-text" data-i18n="teaching_progress">Tiến trình giảng dạy</span>
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <div class="submenu">
-                        <a href="#" data-i18n="lesson_completed">Lesson completed</a>
-                        <a href="#" data-i18n="lessons_being_taught">Lessons being taught</a>
+                        <a href="#" data-i18n="lesson_completed">Bài đã hoàn thành</a>
+                        <a href="#" data-i18n="lessons_being_taught">Bài đang dạy</a>
                     </div>
                 </div>
 
-                <div class="menu-item">
+                <div class="menu-item {% block set_mode_active %}{% endblock %}">
                     <a href="{{ url_for('set_teaching_mode') }}" class="menu-link">
                         <div class="icon-box"><i class="fas fa-sliders-h"></i></div>
-                        <span class="nav-text" data-i18n="set_mode">Set teaching mode</span>
+                        <span class="nav-text" data-i18n="set_mode">Cài đặt chế độ giảng dạy</span>
                     </a>
                 </div>
 
                 <div class="menu-item">
                     <a href="#" class="menu-link">
                         <div class="icon-box"><i class="fas fa-book"></i></div>
-                        <span class="nav-text" data-i18n="material">Reference material</span>
+                        <span class="nav-text" data-i18n="material">Tài liệu tham khảo</span>
                     </a>
                 </div>
 
                 <div class="menu-item">
                     <a href="#" class="menu-link">
                         <div class="icon-box"><i class="fas fa-users"></i></div>
-                        <span class="nav-text" data-i18n="expert_team">Expert team</span>
+                        <span class="nav-text" data-i18n="expert_team">Team chuyên gia</span>
                     </a>
                 </div>
-
-                <!--                <div class="menu-item">-->
-                <!--                    <a href="#" class="menu-link">-->
-                <!--                        <div class="icon-box"><i class="fas fa-cog"></i></div>-->
-                <!--                        <span class="nav-text" data-i18n="settings">Settings</span>-->
-                <!--                    </a>-->
-                <!--                </div>-->
             </div>
         </nav>
 
@@ -123,7 +113,6 @@
                  alt="Mascot" class="penguin-img">
         </div>
     </aside>
-
     <main class="main-content">
         <header class="top-header">
             <div class="banner-container">
@@ -132,111 +121,34 @@
             <div class="header-controls">
                 <div class="control-group">
                     <button class="btn-primary" onclick="window.location.href='{{ url_for('gioithieu') }}'">
-                        <i class="fas fa-home"></i> Homepage
+                        <i class="fas fa-home"></i> Trang chủ
                     </button>
 
                     <div class="lang-toggle">
-                        <img src="https://flagcdn.com/w40/gb.png" alt="UK Flag" class="flag">
-                        <span>English</span>
+                        <img src="https://flagcdn.com/w40/vn.png" alt="VN Flag" class="flag">
+                        <span>Tiếng Việt</span>
                         <div class="toggle-switch"></div>
                     </div>
                     <button class="btn-logout" data-i18n="theme">
-                        <i class="fas fa-sign-out-alt"></i> Theme
+                        <i class="fas fa-palette"></i> Chủ đề
                     </button>
                 </div>
                 <div class="control-group bottom-row">
-                    <a href="{{ url_for('set_teaching_mode') }}" class="bkt-default-link">
-                        <div class="bkt-default">
-                            <span class="badge">bkt</span> <span data-i18n="default_label">Default</span>
-                        </div>
-                    </a>
-                    <a href="{{ url_for('logout') }}" class="btn-logout" data-i18n="logout">>
+                    <div class="bkt-default">
+                        <span class="badge">bkt</span> Mặc định
+                    </div>
+                    <a href="{{ url_for('logout') }}" class="btn-logout" data-i18n="logout">
                         <i class="fas fa-sign-out-alt"></i> Đăng xuất
                     </a>
                 </div>
             </div>
-
         </header>
 
-        <div class="dashboard-content">
+        {% block main_content_block %}
+        {% endblock %}
 
-            <div class="course-card">
-                <div class="card-header">
-                    <div class="class-title">
-                        <div class="class-icon"><i class="fas fa-users"></i></div>
-                        <h3 data-i18n="class_5_6s">Class 5–6 years</h3>
-                    </div>
-                    <div class="class-stats">
-                        <div class="stat-item">
-                            <span class="stat-val">0</span>
-                            <span class="stat-label" data-i18n="completed">Completed</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-val">70</span>
-                            <span class="stat-label" data-i18n="total_lessons">Total lessons</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-val">0%</span>
-                            <span class="stat-label" data-i18n="progress">Progress</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="lesson-column left">
-                        <div class="column-header">
-                            <div class="icon-box"><i class="fas fa-chalkboard"></i></div>
-                            <div>
-                                <h4 data-i18n="lesson_being_taught">Lesson being taught</h4>
-                                <p data-i18n="current_lecture">Current lecture</p>
-                            </div>
-                        </div>
-                        <div class="empty-state">
-                            <div class="empty-icon-circle">
-                                <i class="fas fa-child"></i>
-                            </div>
-                            <h5 data-i18n="no_lessons">No lessons yet</h5>
-                            <p data-i18n="start_new">Start a new lesson</p>
-                        </div>
-                    </div>
-                    <div class="lesson-column right">
-                        <div class="column-header">
-                            <div class="icon-box"><i class="fas fa-rocket"></i></div>
-                            <div>
-                                <h4 data-i18n="next_lesson">Next lesson</h4>
-                                <p data-i18n="upcoming_lecture">Upcoming lecture</p>
-                            </div>
-                        </div>
-                        <div class="lesson-preview-card">
-                            <div class="preview-header" data-i18n="unit_1_new_friends">Unit 1: New Friends</div>
-                            <div class="preview-image">
-                                <img src="/static/images/thumb_friends.png" alt="New Friends">
-                                <div class="speech-bubbles">
-                                    <span class="bubble b1">Hi!</span>
-                                    <span class="bubble b2">HELLO!</span>
-                                    <span class="bubble b3">Hi!</span>
-                                </div>
-                            </div>
-                            <div class="preview-info">
-                                <div class="info-row">
-                                    <span data-i18n="week_1">Week 1</span>
-                                    <!--<span data-i18n="class_5_6s">Class 5-6 years</span>-->
-                                </div>
-                                <div class="lesson-title" data-i18n="lesson_title_01">LESSON 1 - LET'S
-                                    LISTEN
-                                </div>
-                            </div>
-                            <div class="preview-actions">
-                                <button class="btn-check" data-i18n="check_now">Check now</button>
-                                <div class="likes"><i class="fas fa-heart"></i> 2.8k</div>
-                            </div>
-                        </div>
-                        <div class="show-all" data-i18n="all_lessons_shown">All lessons shown</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
     </main>
+
     <div class="modal-backdrop" id="themeModalBackdrop">
         <div class="modal-content">
             <div class="modal-header">
@@ -293,20 +205,13 @@
     </div>
 </div>
 
+{% block scripts %}
 <script src="{{ url_for('static', filename='lang/lang_en.js') }}"></script>
 <script src="{{ url_for('static', filename='lang/lang_vi.js') }}"></script>
-
-<!-- Load JS chính sau khi có LANG_EN / LANG_VI -->
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
-<!--<script src="/assets/lang/lang_en.js"></script>-->
-<!--<script src="/assets/lang/lang_vi.js"></script>-->
-<!--<script src="/assets/js/dashboard.js"></script>-->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-
-        // ... (Phần Sidebar Toggle, Dropdown Menu, Language Toggle giữ nguyên) ...
-
         // 1. Lấy các phần tử
         const sidebar = document.getElementById('sidebar');
         const sidebarToggle = document.getElementById('sidebarToggle');
@@ -336,11 +241,13 @@
         /* =============================== */
         /* 4. Language Toggle + Load File   */
         /* =============================== */
+        // Giả định LANG_EN/LANG_VI được định nghĩa trong file JS tương ứng
+        // (Nếu không có, cần đảm bảo chúng được tải lên hoặc định nghĩa)
 
         const langToggle = document.querySelector('.lang-toggle');
         const langText = langToggle.querySelector('span');
         const langFlag = langToggle.querySelector('img');
-        let currentLang = "en"; // Biến lưu ngôn ngữ hiện tại
+        let currentLang = "vi"; // Khởi tạo Tiếng Việt theo hình ảnh
 
         function applyLanguage(langData) {
             const htmlKeys = ['homepage', 'theme', 'logout'];
@@ -365,17 +272,23 @@
                 currentLang = "vi";
                 langText.textContent = "Tiếng Việt";
                 langFlag.src = "https://flagcdn.com/w40/vn.png";
-                applyLanguage(LANG_VI);
+                if (typeof LANG_VI !== 'undefined') {
+                    applyLanguage(LANG_VI);
+                }
             } else {
                 currentLang = "en";
                 langText.textContent = "English";
                 langFlag.src = "https://flagcdn.com/w40/gb.png";
-                applyLanguage(LANG_EN);
+                if (typeof LANG_EN !== 'undefined') {
+                    applyLanguage(LANG_EN);
+                }
             }
         });
 
-        // Khởi tạo ngôn ngữ
-        applyLanguage(LANG_EN);
+        // Khởi tạo ngôn ngữ (Khởi tạo Tiếng Việt theo ảnh)
+        if (typeof LANG_VI !== 'undefined') {
+            applyLanguage(LANG_VI);
+        }
 
         /* =============================== */
         /* 5. Modal Logic (Theme Selector)  */
@@ -412,30 +325,23 @@
         // 5.2. Logic chọn màu
         themeOptions.forEach(option => {
             option.addEventListener('click', function() {
-                // Xóa trạng thái selected khỏi tất cả
                 themeOptions.forEach(opt => opt.classList.remove('selected'));
-
-                // Thêm trạng thái selected cho option hiện tại
                 this.classList.add('selected');
 
-                const selectedColorName = this.getAttribute('data-color');
                 const selectedColorValue = this.querySelector('i').style.color;
 
-                // Cập nhật ô input/preview
-                selectedColorDisplay.style.backgroundColor = selectedColorValue;
-
-                // Cập nhật ngôi sao preview
-                previewStar.querySelector('i').style.color = selectedColorValue;
+                if (selectedColorDisplay) selectedColorDisplay.style.backgroundColor = selectedColorValue;
+                if (previewStar) previewStar.querySelector('i').style.color = selectedColorValue;
             });
         });
 
         // Khởi tạo trạng thái mặc định (Xanh dương)
-        const defaultColor = themeOptions[1].getAttribute('data-color');
-        const defaultColorValue = themeOptions[1].querySelector('i').style.color;
-        selectedColorDisplay.style.backgroundColor = defaultColorValue;
-        previewStar.querySelector('i').style.color = defaultColorValue;
+        const defaultColorValue = themeOptions.length > 1 ? themeOptions[1].querySelector('i').style.color : '#3498db';
+        if (selectedColorDisplay) selectedColorDisplay.style.backgroundColor = defaultColorValue;
+        if (previewStar) previewStar.querySelector('i').style.color = defaultColorValue;
 
     });
 </script>
+{% endblock %}
 </body>
 </html>

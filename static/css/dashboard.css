@@ -794,4 +794,395 @@ body {
         transform: translateX(20px);
 }
 
+/* ==================================== */
+/* 2. Styles cho Modal (Pop-up)         */
+/* ==================================== */
 
+/* Nền Modal (Ẩn theo mặc định) */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Ẩn ban đầu */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-backdrop.show {
+    display: flex;
+    opacity: 1;
+}
+
+/* Nội dung chính của Modal */
+.modal-content {
+    background: white;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px; /* Chiều rộng cố định */
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+}
+
+/* Header Modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #333;
+}
+
+.bkt-logo-text {
+    color: #00a000; /* Màu xanh lá cây cho 'bkt' */
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Body Modal */
+.modal-body {
+    padding: 0 10px;
+}
+
+.modal-description {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.mascot-icon {
+    font-size: 20px;
+}
+
+/* Theme Selector */
+.theme-selector {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.theme-options {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.theme-option {
+    cursor: pointer;
+    font-size: 40px;
+    opacity: 0.5;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.theme-option.selected {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Khu vực Preview và Thay đổi */
+.color-preview-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.color-preview-star {
+    font-size: 50px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.tiger-deco {
+    position: absolute;
+    font-size: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.tiger-deco.left { left: -30px; }
+.tiger-deco.right { right: -30px; }
+
+
+.color-input-display {
+    width: 70%;
+    max-width: 300px;
+    height: 40px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-display-box {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #3498db; /* Màu mặc định: Xanh dương */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-change-theme {
+    background-color: #2ecc71; /* Màu xanh lá cây cho nút Thay đổi */
+    color: white;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-change-theme:hover {
+    background-color: #27ae60;
+}
+
+/* Mascot trang trí ở góc */
+.festive-mascots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.kid-mascot {
+    position: absolute;
+    width: 60px;
+    height: auto;
+}
+.kid-mascot.left {
+    bottom: -30px; /* Di chuyển xuống dưới */
+    left: -80px;
+    transform: scaleX(1);
+}
+.kid-mascot.right {
+    bottom: -30px;
+    right: -80px;
+    transform: scaleX(-1); /* Lật hình ảnh */
+}
+
+/* CSS cho màu sắc thực tế (Dùng trong JS) */
+.color-blue { background-color: #3498db; }
+.color-yellow { background-color: #f1c40f; }
+.color-pink { background-color: #e74c3c; }
+.color-red { background-color: #c0392b; }
+
+
+/* Đảm bảo liên kết Mặc định trông giống như div */
+.bkt-default-link {
+    text-decoration: none; /* Xóa gạch chân */
+    color: inherit; /* Giữ màu chữ */
+    cursor: pointer;
+}
+
+/* Áp dụng hover nhẹ cho khu vực Mặc định (Tùy chọn) */
+.bkt-default-link:hover .bkt-default {
+    background-color: #f0f0f0; /* Màu nền nhẹ khi di chuột */
+    border-radius: 4px;
+}
+
+/* Điều chỉnh vị trí của nút Mặc định/Đăng xuất */
+.header-controls .bottom-row {
+    display: flex;
+    gap: 15px; /* Khoảng cách giữa Mặc định và Đăng xuất */
+    align-items: center;
+}
+
+.bkt-default {
+    /* Đảm bảo kiểu dáng nút Mặc định không bị thay đổi */
+    padding: 5px 8px; /* Giữ padding để dễ dàng click */
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ==================================== */
+/* Styles cho Trang Chế độ Giảng dạy   */
+/* ==================================== */
+
+.teaching-mode-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #eee;
+    width: 100%;
+    color: #333;
+}
+.teaching-mode-header h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0;
+}
+.teaching-mode-section {
+    margin-bottom: 40px;
+}
+.section-title-bar {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #00a000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #00a000;
+}
+.section-title-bar .badge {
+    background-color: #00a000;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.free-mode-bar {
+    border-bottom: 3px solid #3498db;
+    color: #3498db;
+}
+
+/* Grid Bài học */
+.lesson-units-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 0;
+}
+.unit-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+.unit-card.locked {
+    opacity: 0.6;
+    pointer-events: none; /* Không cho click */
+}
+.unit-card.completed {
+    border: 3px solid #00a000; /* Viền xanh cho bài đã hoàn thành */
+}
+.unit-card:hover:not(.locked) {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.unit-header {
+    background-color: #f7f7f7;
+    padding: 8px 15px;
+    font-weight: 700;
+    color: #555;
+    font-size: 14px;
+}
+.unit-image {
+    position: relative;
+    height: 120px;
+    overflow: hidden;
+}
+.unit-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.lock-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lock-icon i {
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 25px;
+}
+.unit-info {
+    padding: 10px 15px;
+}
+.unit-info .info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 5px;
+}
+.lesson-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.unit-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+.unit-stats .rating {
+    flex-grow: 0;
+}
+.unit-stats .rating .filled {
+    color: #f1c40f;
+}
+.unit-stats .likes {
+    color: #e74c3c;
+    margin-left: 10px;
+}
+.progress-bar-wrapper {
+    flex-grow: 1;
+    height: 8px;
+    background-color: #ecf0f1;
+    border-radius: 4px;
+    margin: 0 10px;
+    overflow: hidden;
+}
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #3498db;
+    transition: width 0.3s;
+}
+.progress-bar.completed-bar {
+    width: 100%;
+    background-color: #00a000;
+}
+.progress-bar.small-progress {
+    width: 20%; /* Ví dụ tiến độ nhỏ */
+    background-color: #e67e22; /* Màu khác cho tiến độ */
+}
+.unit-stats .status-text {
+    font-size: 12px;
+    color: #7f8c8d;
+    flex-basis: 50px;
+}

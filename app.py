@@ -47,12 +47,21 @@ def dashboard():
         return redirect(url_for('login_page'))
     return render_template('dashboard.html', user_email=session.get('user_email'))
 
+@app.route("/gioithieu")
+def gioithieu():
+    return render_template("gioithieu.html")
+
+@app.route('/teaching-mode')
+def set_teaching_mode():
+    # Giả sử bạn có một template HTML cho trang này
+    return render_template('set_teaching_mode.html')
 
 # Logout
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('login_page'))
+
 
 
 if __name__ == '__main__':

@@ -6,7 +6,7 @@
         "overview": "Tổng quan",
         "class": "Lớp học",
         "teaching_progress": "Tiến độ giảng dạy",
-        "set_mode": "Chế độ giảng dạy",
+        "set_mode": "Cài đặt chế độ giảng dạy",
         "material": "Tài liệu tham khảo",
         "expert_team": "Đội ngũ chuyên gia",
         "settings": "Cài đặt",

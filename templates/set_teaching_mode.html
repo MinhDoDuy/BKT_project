@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block title %}SmartKids Cài đặt chế độ giảng dạy{% endblock %}
+
+{# Đánh dấu mục "Cài đặt chế độ giảng dạy" trong sidebar là active và xóa active của Overview #}
+{% block overview_active %}{% endblock %}
+{% block set_mode_active %}active{% endblock %}
+
+{% block main_content_block %}
+    <div class="dashboard-content">
+        <div class="teaching-mode-header">
+            <div class="icon-box"><i class="fas fa-cog"></i></div>
+            <h2>Chế độ giảng dạy</h2>
+        </div>
+
+        <div class="teaching-mode-section">
+            <div class="section-title-bar">
+                <span class="badge">bkt</span> Mặc định
+            </div>
+
+            <div class="lesson-units-grid">
+                <div class="unit-card completed">
+                    <div class="unit-header">Unit 1: Hello</div>
+                    <div class="unit-image">
+                        <img src="/static/images/thumb_friends.png" alt="Unit Hello">
+                    </div>
+                    <div class="unit-info">
+                        <div class="info-row">
+                            <span>Tuần học 1</span>
+                            <span>3 - 4 tuổi</span>
+                        </div>
+                        <div class="lesson-title">Bảng chữ cái tiếng Anh</div>
+                        <div class="unit-stats">
+                            <div class="rating">
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar completed-bar"></div>
+                            </div>
+                            <div class="likes"><i class="fas fa-heart"></i> 668</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit-card locked">
+                    <div class="unit-header">Unit 2: Shapes</div>
+                    <div class="unit-image">
+                        <img src="/static/images/thumb_shapes.png" alt="Unit Shapes">
+                        <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    </div>
+                    <div class="unit-info">
+                        <div class="info-row">
+                            <span>Tuần học 2</span>
+                            <span>3 - 4 tuổi</span>
+                        </div>
+                        <div class="lesson-title">Giới thiệu thông tin v...</div>
+                        <div class="unit-stats">
+                            <div class="status-text">Chưa học</div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <div class="likes"><i class="fas fa-heart"></i> 388</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit-card locked">
+                    <div class="unit-header">Unit 3: Numbers</div>
+                    <div class="unit-image">
+                        <img src="/static/images/thumb_numbers.png" alt="Unit Numbers">
+                        <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    </div>
+                    <div class="unit-info">
+                        <div class="info-row">
+                            <span>Tuần học 3</span>
+                            <span>3 - 4 tuổi</span>
+                        </div>
+                        <div class="lesson-title">Khám phá màu sắc</div>
+                        <div class="unit-stats">
+                            <div class="status-text">Chưa học</div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <div class="likes"><i class="fas fa-heart"></i> 86</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit-card locked">
+                    <div class="unit-header">Unit 4: Nature</div>
+                    <div class="unit-image">
+                        <img src="/static/images/thumb_nature.png" alt="Unit Nature">
+                        <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                    </div>
+                    <div class="unit-info">
+                        <div class="info-row">
+                            <span>Tuần học 4</span>
+                            <span>3 - 4 tuổi</span>
+                        </div>
+                        <div class="lesson-title">Bảng chữ cái tiếng Anh</div>
+                        <div class="unit-stats">
+                            <div class="status-text">Chưa học</div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <div class="likes"><i class="fas fa-heart"></i> 668</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="teaching-mode-section">
+            <div class="section-title-bar free-mode-bar">
+                <i class="fas fa-feather"></i> Tự do
+            </div>
+
+            <div class="lesson-units-grid">
+                <div class="unit-card completed">
+                    <div class="unit-header">Unit 1: Hello</div>
+                    <div class="unit-image">
+                        <img src="/static/images/thumb_friends.png" alt="Unit Hello">
+                    </div>
+                    <div class="unit-info">
+                        <div class="info-row">
+                            <span>Tuần học 1</span>
+                            <span>3 - 4 tuổi</span>
+                        </div>
+                        <div class="lesson-title">Bảng chữ cái tiếng Anh</div>
+                        <div class="unit-stats">
+                            <div class="rating">
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                                <i class="fas fa-star filled"></i>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar completed-bar"></div>
+                            </div>
+                            <div class="likes"><i class="fas fa-heart"></i> 668</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit-card">
+                    <div class="unit-header">Unit 2: Shapes</div>
+                    <div class="unit-image">
+                        <img src="/static/images/thumb_shapes.png" alt="Unit Shapes">
+                    </div>
+                    <div class="unit-info">
+                        <div class="info-row">
+                            <span>Tuần học 2</span>
+                            <span>3 - 4 tuổi</span>
+                        </div>
+                        <div class="lesson-title">Giới thiệu thông tin v...</div>
+                        <div class="unit-stats">
+                            <div class="status-text">Chưa học</div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar small-progress"></div>
+                            </div>
+                            <div class="likes"><i class="fas fa-heart"></i> 388</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit-card">
+                    <div class="unit-header">Unit 3: Numbers</div>
+                    <div class="unit-image">
+                        <img src="/static/images/thumb_numbers.png" alt="Unit Numbers">
+                    </div>
+                    <div class="unit-info">
+                        <div class="info-row">
+                            <span>Tuần học 3</span>
+                            <span>3 - 4 tuổi</span>
+                        </div>
+                        <div class="lesson-title">Khám phá màu sắc</div>
+                        <div class="unit-stats">
+                            <div class="status-text">Chưa học</div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <div class="likes"><i class="fas fa-heart"></i> 86</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="unit-card">
+                    <div class="unit-header">Unit 4: Nature</div>
+                    <div class="unit-image">
+                        <img src="/static/images/thumb_nature.png" alt="Unit Nature">
+                    </div>
+                    <div class="unit-info">
+                        <div class="info-row">
+                            <span>Tuần học 4</span>
+                            <span>3 - 4 tuổi</span>
+                        </div>
+                        <div class="lesson-title">Bảng chữ cái tiếng Anh</div>
+                        <div class="unit-stats">
+                            <div class="status-text">Chưa học</div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar"></div>
+                            </div>
+                            <div class="likes"><i class="fas fa-heart"></i> 668</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
