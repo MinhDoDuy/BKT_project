@@ -105,26 +105,24 @@ body {
 
 /* --- TOGGLE BUTTON (TRẠNG THÁI MỞ MẶC ĐỊNH) --- */
 .toggle-btn {
-        position: absolute;
-        top: 90px;
-        /* VỊ TRÍ MỚI: Đặt nút sát cạnh phải của Sidebar khi nó đang mở */
-        right: 0px;
-        transform: translateX(50%); /* Dịch chuyển ra ngoài 50% chiều rộng của nó */
-
-        width: 30px;
-        height: 30px;
-        background: #fff;
-        border-radius: 50%;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 101;
-        color: #555;
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Đồng bộ với Sidebar */
+    position: absolute;
+    top: 90px;              /* ✅ Đẩy nút lên trên */
+    right: -18px;          /* ✅ Lòi ra ngoài sidebar */
+    width: 36px;           /* ✅ Dạng viên dọc */
+    height: 56px;
+    background: white;
+    border-radius: 12px;   /* ✅ Bo góc kiểu pill */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transition: all 0.3s ease;
 }
-.toggle-btn:hover { background: #f9f9f9; color: #000; }
+.toggle-btn:hover {
+    transform: scale(1.05);
+}
 
 /* --- USER PROFILE --- */
 .user-profile {
@@ -347,6 +345,8 @@ body {
         position: relative;
         flex-shrink: 0;
         height: 160px;
+        transition: all 0.3s ease;
+
 }
 
 .penguin-img {
@@ -407,10 +407,15 @@ body {
 
 /* --- TOGGLE BUTTON (TRẠNG THÁI THU GỌN - .collapsed) --- */
 .sidebar.collapsed .toggle-btn {
-        /* Đẩy nút ra ngoài khỏi cạnh phải của Sidebar thu gọn (80px). */
-        /* Vị trí này sẽ đặt nút ngay cạnh bên ngoài Sidebar. */
-        right: 0px;
-        transform: translateX(100%); /* Chỉ dịch chuyển ra ngoài 100% chiều rộng của nút (30px) */
+    right: -18px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.toggle-btn i {
+    font-size: 16px;
+    color: #555;
 }
 
 /* Biểu tượng mũi tên xoay */
@@ -446,15 +451,20 @@ body {
 
 /* SỬA ĐỔI QUAN TRỌNG: Đảm bảo Mascot luôn hiển thị */
 .sidebar.collapsed .mascot-area {
-        display: flex; /* Đảm bảo nó không bị ẩn */
-        justify-content: center;
-        align-items: flex-end;
-        padding: 30px 0 0;
-        height: 120px;
+    position: fixed;
+    left: 20px;          /* Canh vào giữa cột icon */
+    bottom: 10px;        /* ✅ SÁT ĐÁY */
+    height: auto;        /* ✅ BẮT BUỘC */
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
 .sidebar.collapsed .penguin-img {
-        width: 65px; /* Chim cánh cụt nhỏ lại khi thu gọn */
+    width: 48px;
+    margin-left: 0;     /* ✅ XÓA lệch trái cũ */
 }
 
 /* Icon Thông báo bị đẩy ra/ẩn đi khi thu gọn */
@@ -555,6 +565,12 @@ body {
     font-weight:700;font-size:.9rem;
     display:flex;gap:8px;align-items:center;
     padding:5px 10px;
+    transition: all 0.3s ease;
+}
+
+.lang-toggle:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
 }
 
 .flag { width:20px;border-radius:4px; }
@@ -563,6 +579,8 @@ body {
     width:30px;height:16px;
     background:#4a90e2;border-radius:10px;
     position:relative;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
 }
 
 .toggle-switch::after {
@@ -791,7 +809,7 @@ body {
 }
 
 .lang-toggle.active .toggle-switch::after {
-        transform: translateX(20px);
+    transform: translateX(20px) scale(1.1);
 }
 
 /* ==================================== */
@@ -817,6 +835,7 @@ body {
 .modal-backdrop.show {
     display: flex;
     opacity: 1;
+    animation: fadeInBackdrop 0.3s ease forwards;
 }
 
 /* Nội dung chính của Modal */
@@ -829,6 +848,23 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
     text-align: center;
+    transform: scale(0.9);
+    animation: scaleIn 0.3s ease forwards;
+}
+
+@keyframes fadeInBackdrop {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+.modal-content:hover {
+    transform: scale(1.02); /* Hơi nổi khi hover */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
 }
 
 /* Header Modal */
@@ -892,7 +928,13 @@ body {
     cursor: pointer;
     font-size: 40px;
     opacity: 0.5;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-option:hover {
+    transform: scale(1.2);
+    opacity: 1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .theme-option.selected {
@@ -1075,12 +1117,7 @@ body {
     padding: 0;
 }
 .unit-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: transform 0.2s;
-    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 .unit-card.locked {
     opacity: 0.6;
@@ -1089,9 +1126,11 @@ body {
 .unit-card.completed {
     border: 3px solid #00a000; /* Viền xanh cho bài đã hoàn thành */
 }
+
 .unit-card:hover:not(.locked) {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px) scale(1.03); /* Nổi lên + hơi phóng to */
+    box-shadow: 0 12px 20px rgba(0,0,0,0.15); /* Bóng đổ sâu hơn */
+    filter: brightness(1.05); /* Nhẹ sáng hơn */
 }
 .unit-header {
     background-color: #f7f7f7;
@@ -1185,4 +1224,21 @@ body {
     font-size: 12px;
     color: #7f8c8d;
     flex-basis: 50px;
+}
+
+/* 2. HIỆU ỨNG KHI DI CHUỘT (KHÔNG NHẢY SANG) */
+.submenu a:hover {
+    color: var(--text-dark);
+    font-weight: 600;
+    background: var(--white);
+
+    /* ❌ BỎ mấy cái gây nhảy */
+    position: static;
+    text-align: left;
+    padding: 8px 12px;
+
+    /* ✅ TẠO HIỆU ỨNG NỔI LÊN */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
 }
